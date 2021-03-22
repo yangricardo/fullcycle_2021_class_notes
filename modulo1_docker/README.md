@@ -200,3 +200,31 @@ latest: digest: sha256:4ff3e8411d006d0ceca28aa983b72c43e6df39a5801788fef031d8975
 #### Conteiner Acessando Serviço na Máquina
 
 > Requisições para endereço `http://host.docker.internal:<PORTA_NA_MAQUINA_HOST>`
+
+## Colocando em Prática
+
+### PHP/Laravel
+
+```dockerfile
+FROM php:7.4-cli
+# utiliza como base a imagem do php
+WORKDIR /var/www
+# atribui o diretório corrente
+RUN apt-get update && \
+    apt-get install -y libzip-dev && \
+    docker-php-ext-install zip
+# atualiza dependencias do sistema e instala dependencia do zip
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
+    php composer-setup.php && \
+    php -r "unlink('composer-setup.php');" && \
+    php composer.phar create-project --prefer-dist laravel/laravel laravel
+# instala o composer e o laravel
+ENTRYPOINT [ "php", "laravel/artisan", "serve" ]
+# executa o servidor laravel
+CMD [ "--host=0.0.0.0" ]
+# no host 0.0.0.0
+```
+
+> - `build`: `docker build -t yangricardo/laravel ./laravel`
+> - `run`: `docker run --rm --name laravel -p 8000:8000 yangricardo/laravel`
+> - `push`: `docker push yangricardo/laravel` ==> [Imagem docker](https://hub.docker.com/r/yangricardo/laravel)
