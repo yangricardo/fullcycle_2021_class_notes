@@ -74,6 +74,7 @@ CMD ["echo","World"]
 > ➜  02_ubuntu_hello_dockerfile git:(main) ✗ docker run --rm yangricardo/ubuntu_hello:latest echo Hello
 >
 > Hello echo Hello
+>
 > ➜  02_ubuntu_hello_dockerfile git:(main) ✗ docker run --rm yangricardo/ubuntu_hello:latest Yang
 >
 > Hello Yang
