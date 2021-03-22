@@ -196,3 +196,7 @@ latest: digest: sha256:4ff3e8411d006d0ceca28aa983b72c43e6df39a5801788fef031d8975
 
 > No `MacOS`, o tipo `Host` não funciona adequadamente, devido a forma como o `Docker Desktop` funciona neste sistema operacional.
 > No `Windows` funciona normalmente, dado que o `WSL2` é um linux de fato.
+
+#### Conteiner Acessando Serviço na Máquina
+
+> Requisições para endereço `http://host.docker.internal:<PORTA_NA_MAQUINA_HOST>`
