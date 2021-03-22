@@ -174,3 +174,25 @@ latest: digest: sha256:4ff3e8411d006d0ceca28aa983b72c43e6df39a5801788fef031d8975
 #### None
 
 > Conteiner roda em modo isolado
+
+### Trabalhando com network
+
+> - `docker network ls`: lista networks existentes no docker host
+> - `docker network prune`: remove todas as networks inativas
+> - `docker inspect ubuntu1`: inspeciona o conteiner
+
+#### Trabalhando com Bridge
+
+> - `docker network inspect bridge`: inspeciona a network bridge
+> - `docker attach ubuntu1`: acessa terminal de container em execução
+> - `docker network create --driver bridge ubuntu_network`:  cria uma docker network de tipo `bridge` chamada `ubuntu_network`
+> - `docker run -d -it --name ubuntu1 --network ubuntu_network bash`: executa um contêiner já associado a uma network
+> - `docker run -d -it --name ubuntu2 bash`: executa um conteiner não associado a uma network
+> - `docker network connect ubuntu_network ubuntu2`: associa um conteiner a uma rede
+
+#### Trabalhando com Host
+
+> - `docker network create --driver host ubuntu__host+network`:  cria uma docker network de tipo `host` chamada `ubuntu_host_network`
+
+> No `MacOS`, o tipo `Host` não funciona adequadamente, devido a forma como o `Docker Desktop` funciona neste sistema operacional.
+> No `Windows` funciona normalmente, dado que o `WSL2` é um linux de fato.
