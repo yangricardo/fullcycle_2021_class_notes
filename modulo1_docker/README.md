@@ -16,15 +16,11 @@ RUN apt-get install vim -y
 
 #### Construção da Imagem Docker baseada no `Dockerfile` acima
 
-```bash
-docker build -t yangricardo/nginx-vim:latest .
-```
+> `docker build -t yangricardo/nginx-vim:latest .`
 
 #### Execução do terminal interativo bash no contêiner docker criado a partir da imagem definida no Dockerfile
 
-```bash
-docker run -it yangricardo/nginx-vim:latest bash
-```
+> `docker run -it yangricardo/nginx-vim:latest bash`
 
 ### Avançando com Dockerfile
 
@@ -71,11 +67,11 @@ CMD ["echo","World"]
 #CMD é uma diretiva que irá definir o parâmetro de acordo com o entrypoint, podendo ser o comando default completo ou apenas os parâmetros de um entrypoint definido
 ```
 
-> ➜  02_ubuntu_hello_dockerfile git:(main) ✗ docker run --rm yangricardo/ubuntu_hello:latest echo Hello
+> `➜  02_ubuntu_hello_dockerfile git:(main) ✗ docker run --rm yangricardo/ubuntu_hello:latest echo Hello`
 >
 > Hello echo Hello
 >
-> ➜  02_ubuntu_hello_dockerfile git:(main) ✗ docker run --rm yangricardo/ubuntu_hello:latest Yang
+> `➜  02_ubuntu_hello_dockerfile git:(main) ✗ docker run --rm yangricardo/ubuntu_hello:latest Yang`
 >
 > Hello Yang
 
