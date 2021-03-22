@@ -47,9 +47,9 @@ CMD ["echo","Hello World"]
 #CMD é uma diretiva que irá definir um comando executável default durante a execução do contêiner docker, e que permite ser substituido
 ```
 
-> `➜  02_ubuntu_hello_dockerfile git:(main) ✗ docker build -t yangricardo/ubuntu_hello:latest .`
+> `docker build -t yangricardo/ubuntu_hello:latest .`
 >
-> `➜  02_ubuntu_hello_dockerfile git:(main) ✗ docker run --rm yangricardo/ubuntu_hello:latest`
+> `docker run --rm yangricardo/ubuntu_hello:latest`
 >
 > Hello
 
@@ -67,11 +67,11 @@ CMD ["echo","World"]
 #CMD é uma diretiva que irá definir o parâmetro de acordo com o entrypoint, podendo ser o comando default completo ou apenas os parâmetros de um entrypoint definido
 ```
 
-> `➜  02_ubuntu_hello_dockerfile git:(main) ✗ docker run --rm yangricardo/ubuntu_hello:latest echo Hello`
+> `docker run --rm yangricardo/ubuntu_hello:latest echo Hello`
 >
 > Hello echo Hello
 >
-> `➜  02_ubuntu_hello_dockerfile git:(main) ✗ docker run --rm yangricardo/ubuntu_hello:latest Yang`
+> `docker run --rm yangricardo/ubuntu_hello:latest Yang`
 >
 > Hello Yang
 
@@ -99,7 +99,7 @@ CMD [ "nginx", "-g", "daemon off;" ]
 
 #### Construção da imagem
 
-> `➜  03_publishing_nginx_image git:(main) ✗ docker build -t yangricardo/nginx-fullcycle .`
+> `docker build -t yangricardo/nginx-fullcycle .`
 
 ```bash
     [+] Building 0.4s (7/7) FINISHED
@@ -148,3 +148,5 @@ fc621d08b12b: Mounted from library/nginx
 14a1ca976738: Mounted from library/nginx 
 latest: digest: sha256:4ff3e8411d006d0ceca28aa983b72c43e6df39a5801788fef031d897590bfc7e size: 1777
 ```
+
+> [Imagem docker](https://hub.docker.com/r/yangricardo/nginx-fullcycle)
