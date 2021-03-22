@@ -54,6 +54,7 @@ CMD ["echo","Hello World"]
 > `➜  02_ubuntu_hello_dockerfile git:(main) ✗ docker build -t yangricardo/ubuntu_hello:latest .`
 >
 > `➜  02_ubuntu_hello_dockerfile git:(main) ✗ docker run --rm yangricardo/ubuntu_hello:latest`
+>
 > Hello
 
 > - flag `--rm` remove o conteiner apos a execução
@@ -71,8 +72,10 @@ CMD ["echo","World"]
 ```
 
 > ➜  02_ubuntu_hello_dockerfile git:(main) ✗ docker run --rm yangricardo/ubuntu_hello:latest echo Hello
+>
 > Hello echo Hello
 > ➜  02_ubuntu_hello_dockerfile git:(main) ✗ docker run --rm yangricardo/ubuntu_hello:latest Yang
+>
 > Hello Yang
 
 #### Comandos Docker
