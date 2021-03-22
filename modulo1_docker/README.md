@@ -83,3 +83,68 @@ CMD ["echo","World"]
 ### Docker Entrypoint Exec
 
 > Todo contêiner docker possui um processo que o mantém ativo, no caso da [imagem](https://hub.docker.com/layers/nginx/library/nginx/latest/images/sha256-3a9f0b1c80284e8979a43a042512e45742114c113985b5877fcc3b7ff2b1b65b?context=explore) do `Nginx` define como `ENTRYPOINT` este [script](https://github.com/nginxinc/docker-nginx/blob/master/entrypoint/docker-entrypoint.sh), que possui no fim o comando terminal unix `exec "$@"`, que irá receber qualquer `CMD` disponível
+
+### Publicando Imagem no Dockerhub
+
+#### Definição de Imagem baseada no `Nginx` contendo os arquivos HTML
+
+```Dockerfile
+FROM nginx:latest
+
+COPY html/ /usr/share/nginx/html
+
+ENTRYPOINT [ "/docker-entrypoint.sh" ]
+CMD [ "nginx", "-g", "daemon off;" ]
+```
+
+#### Construção da imagem
+
+> `➜  03_publishing_nginx_image git:(main) ✗ docker build -t yangricardo/nginx-fullcycle .`
+
+```bash
+    [+] Building 0.4s (7/7) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                                                                    0.1s
+ => => transferring dockerfile: 173B                                                                                                                                                    0.0s
+ => [internal] load .dockerignore                                                                                                                                                       0.1s
+ => => transferring context: 2B                                                                                                                                                         0.0s
+ => [internal] load metadata for docker.io/library/nginx:latest                                                                                                                         0.0s
+ => [internal] load build context                                                                                                                                                       0.0s
+ => => transferring context: 474B                                                                                                                                                       0.0s
+ => CACHED [1/2] FROM docker.io/library/nginx:latest                                                                                                                                    0.0s
+ => [2/2] COPY html/ /usr/share/nginx/html                                                                                                                                              0.1s
+ => exporting to image                                                                                                                                                                  0.1s
+ => => exporting layers                                                                                                                                                                 0.1s
+ => => writing image sha256:483d43c7cca8473a4e702ba483ccd0cecb66c89c4c08fb817e24ea330d88241e                                                                                            0.0s
+ => => naming to docker.io/yangricardo/nginx-fullcycle
+```
+
+#### Execução
+
+> `docker run --rm -d -p 8080:8080 yangricardo/nginx-fullcycle`
+>
+> - `--rm`: remove o conteiner apos execução
+> - `-d`: executa em modo detached, ou seja, background
+> - `-p 8080:8080`: associa a porta 8080 do dispositivo host à porta 8080 do conteiner
+
+#### Login
+
+> `docker login`
+>
+> - Entrar com `username` e `password`
+
+#### Enviar imagem para repositório de conteiner docker
+
+> `docker push yangricardo/nginx-fullcycle`
+
+```bash
+Using default tag: latest
+The push refers to repository [docker.io/yangricardo/nginx-fullcycle]
+e641c0727a6e: Pushed 
+6b93c0e56d01: Mounted from library/nginx 
+2f2780a1a18d: Mounted from library/nginx 
+7278048f2330: Mounted from library/nginx 
+fc621d08b12b: Mounted from library/nginx 
+2230366c7c6c: Mounted from library/nginx 
+14a1ca976738: Mounted from library/nginx 
+latest: digest: sha256:4ff3e8411d006d0ceca28aa983b72c43e6df39a5801788fef031d897590bfc7e size: 1777
+```
