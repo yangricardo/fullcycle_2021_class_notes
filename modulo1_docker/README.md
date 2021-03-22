@@ -39,3 +39,46 @@ RUN apt-get update && \
 COPY html/ /usr/share/nginx/html
 # COPY é uma diretiva que copia um arquivo ou diretório para o caminho de destino indicado
 ```
+
+### ENTRYPOINT vs CMD
+
+#### CMD
+
+```dockerfile
+FROM ubuntu:latest
+
+CMD ["echo","Hello World"]
+#CMD é uma diretiva que irá definir um comando executável default durante a execução do contêiner docker, e que permite ser substituido
+```
+
+> `docker build -t yangricardo/ubuntu_hello:latest .`
+>
+> `docker run --rm yangricardo/ubuntu_hello:latest`
+>
+> ```
+>  Hello
+> ```
+
+> - flag `--rm` remove o conteiner apos a execução
+
+#### ENTRYPOINT
+
+```dockerfile
+FROM ubuntu:latest
+
+ENTRYPOINT ["echo","Hello"]
+#ENTRYPOINT  é uma diretiva que irá definir um comando executável FIXO
+
+CMD ["echo","World"]
+#CMD é uma diretiva que irá definir o parâmetro de acordo com o entrypoint, podendo ser o comando completo ou apenas os parâmetros de um entrypoint definido
+```
+
+> ➜  02_ubuntu_hello_dockerfile git:(main) ✗ docker run --rm yangricardo/ubuntu_hello:latest echo Hello
+> Hello echo Hello
+> ➜  02_ubuntu_hello_dockerfile git:(main) ✗ docker run --rm yangricardo/ubuntu_hello:latest Yang
+> Hello Yang
+
+#### Comandos Docker
+
+- `docker ps -a -q`: lista os IDs dos contêiners ativos e inativos
+- `docker rm $(docker ps -aq)`: remove todos os contêiners listados
