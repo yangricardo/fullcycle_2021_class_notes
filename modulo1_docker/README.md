@@ -77,5 +77,9 @@ CMD ["echo","World"]
 
 #### Comandos Docker
 
-- `docker ps -a -q`: lista os IDs dos contêiners ativos e inativos
-- `docker rm $(docker ps -aq)`: remove todos os contêiners listados
+> - `docker ps -a -q`: lista os IDs dos contêiners ativos e inativos
+> - `docker rm $(docker ps -aq)`: remove todos os contêiners listados
+
+### Docker Entrypoint Exec
+
+> Todo contêiner docker possui um processo que o mantém ativo, no caso da [imagem](https://hub.docker.com/layers/nginx/library/nginx/latest/images/sha256-3a9f0b1c80284e8979a43a042512e45742114c113985b5877fcc3b7ff2b1b65b?context=explore) do `Nginx` define como `ENTRYPOINT` este [script](https://github.com/nginxinc/docker-nginx/blob/master/entrypoint/docker-entrypoint.sh), que possui no fim o comando terminal unix `exec "$@"`, que irá receber qualquer `CMD` disponível
