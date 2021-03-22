@@ -150,3 +150,27 @@ latest: digest: sha256:4ff3e8411d006d0ceca28aa983b72c43e6df39a5801788fef031d8975
 ```
 
 > [Imagem docker](https://hub.docker.com/r/yangricardo/nginx-fullcycle)
+
+## Networks
+
+### Tipos de Network
+
+#### Bridge
+
+> Tipo de rede que viabiliza um contêiner conversar com outro
+
+#### Host
+
+> Tipo de rede que combina a rede do docker, ou seja, os contêiners em execução, com a rede do computador Host
+
+#### Overlay
+
+> Tipo de rede que viabiliza que contêiners executando remotamente possam ser integradas, como se estivessem local
+
+#### macvlan
+
+> Tipo de rede baseado no MAC Address, aplicação incomum.
+
+#### None
+
+> Conteiner roda em modo isolado
