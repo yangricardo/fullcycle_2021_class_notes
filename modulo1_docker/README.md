@@ -51,13 +51,10 @@ CMD ["echo","Hello World"]
 #CMD é uma diretiva que irá definir um comando executável default durante a execução do contêiner docker, e que permite ser substituido
 ```
 
-> `docker build -t yangricardo/ubuntu_hello:latest .`
+> `➜  02_ubuntu_hello_dockerfile git:(main) ✗ docker build -t yangricardo/ubuntu_hello:latest .`
 >
-> `docker run --rm yangricardo/ubuntu_hello:latest`
->
-> ```
->  Hello
-> ```
+> `➜  02_ubuntu_hello_dockerfile git:(main) ✗ docker run --rm yangricardo/ubuntu_hello:latest`
+> Hello
 
 > - flag `--rm` remove o conteiner apos a execução
 
@@ -70,7 +67,7 @@ ENTRYPOINT ["echo","Hello"]
 #ENTRYPOINT  é uma diretiva que irá definir um comando executável FIXO
 
 CMD ["echo","World"]
-#CMD é uma diretiva que irá definir o parâmetro de acordo com o entrypoint, podendo ser o comando completo ou apenas os parâmetros de um entrypoint definido
+#CMD é uma diretiva que irá definir o parâmetro de acordo com o entrypoint, podendo ser o comando default completo ou apenas os parâmetros de um entrypoint definido
 ```
 
 > ➜  02_ubuntu_hello_dockerfile git:(main) ✗ docker run --rm yangricardo/ubuntu_hello:latest echo Hello
