@@ -228,3 +228,11 @@ CMD [ "--host=0.0.0.0" ]
 > - `build`: `docker build -t yangricardo/laravel ./laravel`
 > - `run`: `docker run --rm --name laravel -p 8000:8000 yangricardo/laravel`
 > - `push`: `docker push yangricardo/laravel` ==> [Imagem docker](https://hub.docker.com/r/yangricardo/laravel)
+
+### NodeJS
+
+> `docker run --rm -it -v $(pwd)/:/usr/src/app -p 3000:3000 node:15 bash`: executa o bash a partir de uma imagem do node, mapeando uma pasta do conteiner com a maquina host e a porta 3000 entre maquina e contêiner
+>
+> `docker build -t yangricardo/hello_express .`
+> `docker run --rm -p 3000:3000 yangricardo/hello_express:latest`
+> `docker push  yangricardo/hello_express:latest`
