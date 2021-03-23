@@ -494,3 +494,41 @@ networks:
 ```
 
 > `docker-compose up --build`: comando força a construção da imagem antes de gerar o build
+
+> `docker-compose exec -it db bash`: executa bash no conteiner db
+
+> `mysql -uroot -p`: executa cliente de terminal
+
+> `mysql> show databases;`: exibe bancos de dados
+
+```
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| nodedb             |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.04 sec)
+```
+
+> `mysql> use nodedb`: modifica o banco de dados corrente
+
+> `mysql> create table people(id int not null auto_increment, name varchar(255), primary key(id));` : cria uma tabela chamada people
+
+> `mysql> desc people`: descreve uma tabela chamada people
+
+```
++-------+--------------+------+-----+---------+----------------+
+| Field | Type         | Null | Key | Default | Extra          |
++-------+--------------+------+-----+---------+----------------+
+| id    | int(11)      | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(255) | YES  |     | NULL    |                |
++-------+--------------+------+-----+---------+----------------+
+```
+
+> `npm i mysql --save`: instala dependência do node
+
+> `mysql> select * from people;`: exibe todos os registros da tabela people
