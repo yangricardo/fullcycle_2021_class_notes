@@ -16,6 +16,17 @@ services:
     networks:
       - node_mysql
 
+  app:
+    build:
+      context: nodejs
+    networks:
+      - node_mysql
+    volumes:
+      - ./nodejs:/usr/src/app
+    ports:
+      - 3000:3000
+    tty: true
+
 networks:
   node_mysql:
     driver: bridge

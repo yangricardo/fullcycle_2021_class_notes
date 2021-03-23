@@ -455,3 +455,42 @@ networks:
   node_mysql:
     driver: bridge
 ```
+
+### MySQL + NodeJS
+
+```yaml
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    command: --innodb-use-native-aio=0
+    container_name: db
+    restart: always
+    tty: true
+    volumes:
+      - ./mysql/:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=nodedb
+      - MYSQL_ROOT_PASSWORD=nodedb_pw
+      - MYSQL_USER=nodedb_admin
+    networks:
+      - node_mysql
+
+  app:
+    build:
+      context: nodejs
+    networks:
+      - node_mysql
+    volumes:
+      - ./nodejs:/usr/src/app
+    ports:
+      - 3000:3000
+    tty: true
+
+networks:
+  node_mysql:
+    driver: bridge
+```
+
+> `docker-compose up --build`: comando força a construção da imagem antes de gerar o build
