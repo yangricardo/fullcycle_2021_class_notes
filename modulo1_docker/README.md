@@ -355,6 +355,77 @@ RUN mkdir /var/www/html -p && touch /var/www/html/index.php
 
 > `docker-compose up`
 >
-> `docker-compose -f modulo1_docker/06_docker_compose/docker-compose.yaml up`
->
 > - Cria os conteiners docker definidos
+> `docker-compose -f modulo1_docker/06_docker_compose/docker-compose.yaml up`
+> - `-f` indica um arquivo
+> `docker-compose up -d`
+> - `-d` modo detached
+
+### versão 1
+
+```yaml
+version: '3'
+
+services:
+  laravel:
+    image: yangricardo/laravel:prod
+    container_name: laravel
+    networks:
+      - nginx_laravel
+
+  nginx:
+    image: yangricardo/laravel_nginx:prod
+    container_name: nginx
+    networks:
+      - nginx_laravel
+    ports:
+      - 8080:8080
+
+networks:
+  nginx_laravel:
+    driver: bridge
+```
+
+### versão 2
+
+```bash
+tree modulo1_docker/06_docker_compose 
+modulo1_docker/06_docker_compose
+├── docker-compose.yaml
+├── laravel
+│   └── Dockerfile.prod
+└── nginx
+    ├── Dockerfile.prod
+    └── nginx.conf
+
+2 directories, 4 files
+```
+
+```yaml
+version: '3'
+
+services:
+  laravel:
+    build:
+      context: ./laravel
+      dockerfile: Dockerfile.prod
+    image: yangricardo/laravel:prod
+    container_name: laravel
+    networks:
+      - nginx_laravel
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.prod
+    image: yangricardo/laravel_nginx:prod
+    container_name: nginx
+    networks:
+      - nginx_laravel
+    ports:
+      - 8080:80
+
+networks:
+  nginx_laravel:
+    driver: bridge
+```
