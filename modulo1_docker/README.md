@@ -346,3 +346,15 @@ RUN mkdir /var/www/html -p && touch /var/www/html/index.php
 #### cria servidor nginx que executa o papel de proxy reverso
 
 > `docker run -d --network nginx_laravel --name laravel_nginx -p 8080:80  yangricardo/laravel_nginx:prod`
+
+## Docker Compose
+
+> Arquivo de manifesto que provisiona uma coleção de serviços, volumes e networks
+
+### UP
+
+> `docker-compose up`
+>
+> `docker-compose -f modulo1_docker/06_docker_compose/docker-compose.yaml up`
+>
+> - Cria os conteiners docker definidos
