@@ -244,6 +244,7 @@ CMD [ "--host=0.0.0.0" ]
 
 ```dockerfile
 # stage 1
+# stage 1
 FROM php:7.4-cli    AS builder
 
 WORKDIR /var/www
@@ -266,14 +267,82 @@ RUN rm -rf /var/www/html
 COPY --from=builder /var/www/laravel .
 # copia o conteudo do stage builder
 
+RUN ln -s public html
+# cria um link simbolico
 RUN chown -R www-data:www-data /var/www
 # faz com que o usuário www-data seja o dono do diretorio
+
 
 EXPOSE 9000
 CMD [ "php-fpm" ]
 ```
 
-> `docker build -t yangricardo/laravel:prod ./modulo1_docker/05_multistage_building/`
+> `docker build -t yangricardo/laravel:prod -f ./modulo1_docker/05_multistage_building/Dockerfile.laravel ./modulo1_docker/05_multistage_building/`
 >
 > [`docker push yangricardo/laravel:prod`](https://hub.docker.com/layers/142540051/yangricardo/laravel/prod/images/sha256-23815cd1e9d3a9b55e22f6c72580289bf93504377eed37e1d78a0ab0472c0aa7?context=explore)
 >
+
+### Nginx
+
+#### Nginx.conf
+
+```conf
+server {
+    listen 80;
+    index index.php index.html;
+    root /var/www/html;
+
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header X-XSS-Protection "1; mode=block";
+    add_header X-Content-Type-Options "nosniff";
+
+    charset utf-8;
+
+    location ~ \.php$ {
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass laravel:9000;
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /robots.txt  { access_log off; log_not_found off; }
+
+    error_page 404 /index.php;
+
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+}
+```
+
+#### Dockerfile.nginx
+
+```dockerfile
+FROM nginx:1.15.0-alpine
+
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d
+
+RUN mkdir /var/www/html -p && touch /var/www/html/index.php
+```
+
+> `docker build -t yangricardo/laravel_nginx:prod -f modulo1_docker/05_multistage_building/Dockerfile.nginx ./modulo1_docker/05_multistage_building/`
+
+#### criar docker network
+
+> `docker network create --driver bridge nginx_laravel`
+
+#### criar servidor laravel associado a rede
+
+> `docker run -d --network nginx_laravel --name laravel yangricardo/laravel:prod`
+>
+> - Este servidor expõe portas somente para a docker network
+
+#### cria servidor nginx que executa o papel de proxy reverso
+
+> `docker run -d --network nginx_laravel --name laravel_nginx -p 8080:80  yangricardo/laravel_nginx:prod`

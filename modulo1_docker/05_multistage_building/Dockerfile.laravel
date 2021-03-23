@@ -21,8 +21,11 @@ RUN rm -rf /var/www/html
 COPY --from=builder /var/www/laravel .
 # copia o conteudo do stage builder
 
+RUN ln -s public html
+# cria um link simbolico
 RUN chown -R www-data:www-data /var/www
 # faz com que o usuário www-data seja o dono do diretorio
+
 
 EXPOSE 9000
 CMD [ "php-fpm" ]
