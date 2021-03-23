@@ -234,5 +234,6 @@ CMD [ "--host=0.0.0.0" ]
 > `docker run --rm -it -v $(pwd)/:/usr/src/app -p 3000:3000 node:15 bash`: executa o bash a partir de uma imagem do node, mapeando uma pasta do conteiner com a maquina host e a porta 3000 entre maquina e contêiner
 >
 > `docker build -t yangricardo/hello_express .`
+> `docker build -t yangricardo/hello_express . -f Dockerfile.prod`: utiliza um arquivo `Dockerfile.prod` para construir imagem de produção
 > `docker run --rm -p 3000:3000 yangricardo/hello_express:latest`
 > `docker push  yangricardo/hello_express:latest`
