@@ -532,3 +532,17 @@ networks:
 > `npm i mysql --save`: instala dependência do node
 
 > `mysql> select * from people;`: exibe todos os registros da tabela people
+
+#### Dockerize
+
+Dockerize é uma dependência que podemos adicionar as imagens para facilidar o controle entre dependências entre containers ou outros serviços externos para que o container possa ser executado
+
+```dockerfile
+ENV DOCKERIZE_VERSION v0.6.1
+RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+
+    
+ENTRYPOINT [ "dockerize", "-wait", "tcp://db:3306", "-timeout", "20s","docker-entrypoint.sh" ]
+```

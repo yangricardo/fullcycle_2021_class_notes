@@ -19,6 +19,7 @@ services:
   app:
     build:
       context: nodejs
+    image: yangricardo/nodejs_app
     networks:
       - node_mysql
     volumes:
@@ -26,6 +27,8 @@ services:
     ports:
       - 3000:3000
     tty: true
+    depends_on:
+      - db
 
 networks:
   node_mysql:
