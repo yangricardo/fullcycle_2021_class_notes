@@ -274,3 +274,6 @@ CMD [ "php-fpm" ]
 ```
 
 > `docker build -t yangricardo/laravel:prod ./modulo1_docker/05_multistage_building/`
+>
+> [`docker push yangricardo/laravel:prod`](https://hub.docker.com/layers/142540051/yangricardo/laravel/prod/images/sha256-23815cd1e9d3a9b55e22f6c72580289bf93504377eed37e1d78a0ab0472c0aa7?context=explore)
+>
