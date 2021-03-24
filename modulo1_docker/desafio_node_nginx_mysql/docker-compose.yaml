@@ -18,11 +18,11 @@ services:
   app:
     build:
       context: node_app
-    image: yangricardo/desafio_node_nginx_mysql__node_app:prod
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 20s node index.js
     networks:
       - node_mysql
     volumes:
-      - ./node_app:/usr/src/app
+      - app_volume:/usr/src/app
     tty: true
     depends_on:
       - db
@@ -30,13 +30,15 @@ services:
   nginx:
     build:
       context: ./nginx
-    image: yangricardo/desafio_node_nginx_mysql__nginx:prod
     networks:
       - node_mysql
     ports:
       - 8080:80
     depends_on:
       - app
+
+volumes:
+  app_volume: {}
 
 networks:
   node_mysql:
