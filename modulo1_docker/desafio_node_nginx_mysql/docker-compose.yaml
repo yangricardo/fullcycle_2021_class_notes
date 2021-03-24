@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    command: --innodb-use-native-aio=0
+    container_name: db
+    restart: always
+    tty: true
+    volumes:
+      - ./mysql/:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=nodedb
+      - MYSQL_ROOT_PASSWORD=root
+    networks:
+      - node_mysql
+
+  app:
+    build:
+      context: node_app
+    image: yangricardo/desafio_node_nginx_mysql__node_app:prod
+    networks:
+      - node_mysql
+    volumes:
+      - ./node_app:/usr/src/app
+    tty: true
+    depends_on:
+      - db
+
+  nginx:
+    build:
+      context: ./nginx
+    image: yangricardo/desafio_node_nginx_mysql__nginx:prod
+    networks:
+      - node_mysql
+    ports:
+      - 8080:80
+    depends_on:
+      - app
+
+networks:
+  node_mysql:
+    driver: bridge
