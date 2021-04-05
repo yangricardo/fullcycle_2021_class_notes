@@ -63,3 +63,11 @@ c5d19cb40553   0369cf4303ff           "etcd --advertise-cl…"   30 minutes ago 
 ```
 
 > `kind-control-plane` é o conteiner do kind
+
+- `kubectl get nodes` lista os nós kubernetes
+
+```bash
+➜  iniciando_com_kubernetes git:(main) kubectl get nodes                       
+NAME                 STATUS   ROLES                  AGE     VERSION
+kind-control-plane   Ready    control-plane,master   7m33s   v1.20.2
+```
