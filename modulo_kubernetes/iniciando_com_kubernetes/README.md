@@ -71,3 +71,31 @@ c5d19cb40553   0369cf4303ff           "etcd --advertise-cl…"   30 minutes ago 
 NAME                 STATUS   ROLES                  AGE     VERSION
 kind-control-plane   Ready    control-plane,master   7m33s   v1.20.2
 ```
+
+- `kind get clusters` lista clusters
+
+- `kind delete clusters kind` deleta um cluster chamado kind
+
+## Configuração de Nodes
+
+> [nodes configuration](https://kind.sigs.k8s.io/docs/user/configuration/#nodes)
+
+- `kind create cluster --config=modulo_kubernetes/iniciando_com_kubernetes/k8s/kind.yaml --name fullcycle` : cria um cluster chamado `kind-fullcycle` a partir da definição de um arquivo chamado kind.yaml
+
+```bash
+➜  fullcycle git:(main) ✗ kind create cluster --config=modulo_kubernetes/iniciando_com_kubernetes/k8s/kind.yaml --name fullcycle 
+Creating cluster "fullcycle" ...
+ ✓ Ensuring node image (kindest/node:v1.20.2) 🖼 
+ ✓ Preparing nodes 📦 📦 📦 📦  
+ ✓ Writing configuration 📜 
+ ✓ Starting control-plane 🕹️ 
+ ✓ Installing CNI 🔌 
+ ✓ Installing StorageClass 💾 
+ ✓ Joining worker nodes 🚜 
+Set kubectl context to "kind-fullcycle"
+You can now use your cluster with:
+
+kubectl cluster-info --context kind-fullcycle
+
+Thanks for using kind! 😊
+```
