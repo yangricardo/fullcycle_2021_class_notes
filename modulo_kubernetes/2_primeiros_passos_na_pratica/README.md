@@ -36,3 +36,10 @@
 - `kubectl rollout history deployment goserver`: lista as revisões de deployment executadas
 
 - `kubectl rollout undo deployment goserver --to-revision=1`: aplica o retorno para uma revisão anteriormente executada
+
+## Services e ClusterIP
+
+> Forma abstrata que expoe uma aplicação kubernetes, delegando ao Kubernetes a escolha automatica de qual pod vai processar a requisiçào
+>
+> - `kubectl apply -f k8s/service.yaml`: aplica o serviço
+> - `kubectl port-forward svc/goserver-service 3080:80`: publica a porta
