@@ -15,3 +15,5 @@
 - `kubectl apply -f k8s/pod.yaml`: aplica (cria | atualiza) o pod a partir do arquivo definido
 
 - `kubectl port-forward pod/goserver 3080:80`: expõe o pod `goserver` a partir da porta `80` do container para  a porta `3080` do servidor
+
+- `kubectl apply -f k8s/replicaset.yaml`: aplica replicaset de 2 pods baseado no `pod.yaml`
