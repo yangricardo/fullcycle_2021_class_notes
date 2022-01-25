@@ -73,3 +73,6 @@
 
 - `docker build -t yangricardo/hello-go:v6 .`
 - `kind load docker-image yangricardo/hello-go:v6 --name fullcycle-go-server`
+- `echo "Yang" | base64`: transforma a string `Yang` em `base64` gerando o valor `WWFuZwo=`
+- `echo "123456" | base64`: transforma a string `Yang` em `base64` gerando o valor `MTIzNDU2Cg==`
+- `kubectl apply -f k8s/secret.yaml`: aplica o arquivo de secret ao cluster
