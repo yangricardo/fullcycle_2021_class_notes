@@ -30,3 +30,9 @@
 
 > Similar ao replicaset, mas trata a questão de atualizar a versão das imagens, terminando os containers com a antiga versão e subindo novos containers com a nova versão da imagem
 > `kubectl apply -f k8s/deployment.yaml`
+
+## Rollout e Revisões
+
+- `kubectl rollout history deployment goserver`: lista as revisões de deployment executadas
+
+- `kubectl rollout undo deployment goserver --to-revision=1`: aplica o retorno para uma revisão anteriormente executada
