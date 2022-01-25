@@ -6,7 +6,7 @@ func main() {
 	// Mapeia função Hello para a rota principal
 	http.HandleFunc("/", Hello)
 	// monitora requisições na porta 80
-	http.ListenAndServe(":80", nil)
+	http.ListenAndServe(":8000", nil)
 }
 
 func Hello(w http.ResponseWriter, r *http.Request) {

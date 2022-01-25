@@ -21,7 +21,7 @@
 ## Atualizando imagens em replicasets
 
 - Cria e carrega imagem no cluster
-  - `docker build -t yangricardo/hel`lo-go:v2 .`
+  - `docker build -t yangricardo/hello-go:v2 .`
   - `kind load docker-image yangrica`rdo/hello-go:v2 --name fullcycle-go-server`
 
 > Ao aplicar este arquivo, não é garantido que os containers executando até o momento sejam atualizados com a mesma imagem
@@ -43,3 +43,10 @@
 >
 > - `kubectl apply -f k8s/service.yaml`: aplica o serviço
 > - `kubectl port-forward svc/goserver-service 3080:80`: publica a porta
+
+## GoServer V3
+
+- Cria e carrega imagem no cluster e atualiza o deployment
+  - `docker build -t yangricardo/hello-go:v3 .`
+  - `kind load docker-image yangricardo/hello-go:v3 --name fullcycle-go-server`
+  - `kubectl apply -f k8s/deployment.yaml`
