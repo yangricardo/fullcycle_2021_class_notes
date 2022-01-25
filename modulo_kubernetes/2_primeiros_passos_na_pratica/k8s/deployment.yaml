@@ -18,15 +18,18 @@ spec:
         - name: "goserver"
           image: "yangricardo/hello-go:v4"
           imagePullPolicy: Never
-          env:
-            - name: "NAME"
-              valueFrom:
-                configMapKeyRef:
-                  key: NAME
-                  name: goserver-env
+          envFrom:
+            - configMapRef:
+                name: goserver-env
+          # env:
+          #   - name: "NAME"
+          #     valueFrom:
+          #       configMapKeyRef:
+          #         key: NAME
+          #         name: goserver-env
               
-            - name: "AGE"
-              valueFrom:
-                configMapKeyRef:
-                  name: goserver-env
-                  key: AGE
+          #   - name: "AGE"
+          #     valueFrom:
+          #       configMapKeyRef:
+          #         name: goserver-env
+          #         key: AGE
