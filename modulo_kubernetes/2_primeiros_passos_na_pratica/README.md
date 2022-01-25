@@ -17,3 +17,11 @@
 - `kubectl port-forward pod/goserver 3080:80`: expõe o pod `goserver` a partir da porta `80` do container para  a porta `3080` do servidor
 
 - `kubectl apply -f k8s/replicaset.yaml`: aplica replicaset de 2 pods baseado no `pod.yaml`
+
+## Atualizando imagens em replicasets
+
+- Cria e carrega imagem no cluster
+  - `docker build -t yangricardo/hel`lo-go:v2 .`
+  - `kind load docker-image yangrica`rdo/hello-go:v2 --name fullcycle-go-server`
+
+> Ao aplicar este arquivo, não é garantido que os containers executando até o momento sejam atualizados com a mesma imagem

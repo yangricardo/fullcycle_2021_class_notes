@@ -11,5 +11,5 @@ func main() {
 
 func Hello(w http.ResponseWriter, r *http.Request) {
 	// retorna os bytes da mensagem
-	w.Write([]byte("<h1>Hello</h1>"))
+	w.Write([]byte("<h1>Hello!!!</h1>"))
 }
