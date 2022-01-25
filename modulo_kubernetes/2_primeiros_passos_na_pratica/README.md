@@ -68,3 +68,8 @@
 - `kind load docker-image yangricardo/hello-go:v5 --name fullcycle-go-server`
 - `kubectl apply -f k8s/configmap.family.yaml`: aplica novo configmap
 - `kubectl apply -f k8s/deployment.yaml`: modificado para montar um volume a partir de um arquivo
+
+## Goserver V6 - Secret
+
+- `docker build -t yangricardo/hello-go:v6 .`
+- `kind load docker-image yangricardo/hello-go:v6 --name fullcycle-go-server`

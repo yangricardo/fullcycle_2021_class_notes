@@ -12,6 +12,7 @@ func main() {
 	// Mapeia função Hello para a rota principal
 	http.HandleFunc("/", Hello)
 	http.HandleFunc("/family", FamilyConfigMap)
+	http.HandleFunc("/secret", Secret)
 	// monitora requisições na porta 80
 	http.ListenAndServe(":8000", nil)
 }
@@ -23,8 +24,6 @@ func Hello(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Fprintf(w, "Hello, I'm %s, I'm %s", name, age)
 
-	// // retorna os bytes da mensagem
-	// w.Write([]byte("<h1>Hello!!!</h1>"))
 }
 
 func FamilyConfigMap(w http.ResponseWriter, r *http.Request) {
@@ -36,6 +35,11 @@ func FamilyConfigMap(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Fprintf(w, "My Family %s", family)
 
-	// // retorna os bytes da mensagem
-	// w.Write([]byte("<h1>Hello!!!</h1>"))
+}
+
+func Secret(w http.ResponseWriter, r *http.Request) {
+
+	user := os.Getenv("USER")
+	password := os.Getenv("PASSWORD")
+	fmt.Fprintf(w, "User %s. Password %s", user, password)
 }
