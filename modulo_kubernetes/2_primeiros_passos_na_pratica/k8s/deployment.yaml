@@ -13,23 +13,21 @@ spec:
     metadata:
       labels:
         app: "goserver"
-    spec:
+    spec:      
+      volumes:
+        - name: myfamily-config
+          configMap:
+            name: goserver-configmap-family
+            items:
+              - key: members
+                path: "family.txt"    
       containers:
         - name: "goserver"
-          image: "yangricardo/hello-go:v4"
+          image: "yangricardo/hello-go:v5"
           imagePullPolicy: Never
           envFrom:
             - configMapRef:
                 name: goserver-env
-          # env:
-          #   - name: "NAME"
-          #     valueFrom:
-          #       configMapKeyRef:
-          #         key: NAME
-          #         name: goserver-env
-              
-          #   - name: "AGE"
-          #     valueFrom:
-          #       configMapKeyRef:
-          #         name: goserver-env
-          #         key: AGE
+          volumeMounts:
+            - mountPath: "/go/myfamily"
+              name: myfamily-config
