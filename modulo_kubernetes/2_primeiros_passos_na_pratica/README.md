@@ -6,4 +6,4 @@
 
 - `docker build -t yangricardo/hello-go .`: gera imagem docker
 
-- `docker run --rm -p 3080:80`
+- `docker run --rm -p 3080:80 yangricardo/hello-go`
