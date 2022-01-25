@@ -59,3 +59,5 @@
 
 > Tipo de arquivo que armazena variaveis de ambiente
 > `kubectl apply -f k8s/configmap.env.yaml`
+> Atualiza deployment para referenciar o configmap
+> `kubectl apply -f k8s/deployment.yaml`

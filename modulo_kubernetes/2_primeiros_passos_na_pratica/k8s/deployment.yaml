@@ -20,7 +20,13 @@ spec:
           imagePullPolicy: Never
           env:
             - name: "NAME"
-              value: "Yang"
+              valueFrom:
+                configMapKeyRef:
+                  key: NAME
+                  name: goserver-env
               
             - name: "AGE"
-              value: "28"
+              valueFrom:
+                configMapKeyRef:
+                  name: goserver-env
+                  key: AGE
