@@ -44,11 +44,11 @@
 > - `kubectl apply -f k8s/service.yaml`: aplica o serviço
 > - `kubectl port-forward svc/goserver-service 3080:80`: publica a porta
 
-## GoServer V3 Port e Target Port
+## GoServer V4 Port e Target Port
 
 - Cria e carrega imagem no cluster e atualiza o deployment
   - `docker build -t yangricardo/hello-go:v4 .`
-  - `kind load docker-image yangricardo/hello-go:v3 --name fullcycle-go-server`
+  - `kind load docker-image yangricardo/hello-go:v4 --name fullcycle-go-server`
   - `kubectl apply -f k8s/deployment.yaml`
   - `kubectl port-forward svc/goserver-service 9000:80`
 
@@ -61,3 +61,8 @@
 > `kubectl apply -f k8s/configmap.env.yaml`
 > Atualiza deployment para referenciar o configmap
 > `kubectl apply -f k8s/deployment.yaml`
+
+## GoServer V5 - Configmap
+
+- `docker build -t yangricardo/hello-go:v5 .`
+- `kind load docker-image yangricardo/hello-go:v5 --name fullcycle-go-server`
