@@ -23,11 +23,13 @@ spec:
                 path: "family.txt"    
       containers:
         - name: "goserver"
-          image: "yangricardo/hello-go:v5"
+          image: "yangricardo/hello-go:v6"
           imagePullPolicy: Never
           envFrom:
             - configMapRef:
                 name: goserver-env
+            - secretRef:
+                name: goserver-secret
           volumeMounts:
             - mountPath: "/go/myfamily"
               name: myfamily-config
