@@ -56,3 +56,6 @@
 > Target Portä exposta pelo container / pod
 
 ## GoServer v4 - Configmap
+
+> Tipo de arquivo que armazena variaveis de ambiente
+> `kubectl apply -f k8s/configmap.env.yaml`
