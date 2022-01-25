@@ -66,3 +66,4 @@
 
 - `docker build -t yangricardo/hello-go:v5 .`
 - `kind load docker-image yangricardo/hello-go:v5 --name fullcycle-go-server`
+- `kubectl apply -f k8s/configmap.family.yaml`: aplica novo configmap
