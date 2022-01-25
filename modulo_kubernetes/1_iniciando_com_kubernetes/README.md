@@ -12,7 +12,9 @@
 
 - `asdf plugin-add kind`: habilita o plugin do kind para ser instalado via `asdf`
 - `asdf list all kind`: lista todos as versões do kind
-- `asdf install kind 0.10.0`: instala kind v0.10.0
+- `asdf install kind 0.11.1`: instala kind v0.11.1
+- `asdf local kind 0.11.1`: define localmente kind v0.11.1
+- `asdf global kind 0.11.1`: define globalmente kind v0.11.1
 
 ## Criando primeiro cluster com Kind
 
