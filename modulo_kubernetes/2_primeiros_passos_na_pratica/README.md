@@ -25,3 +25,8 @@
   - `kind load docker-image yangrica`rdo/hello-go:v2 --name fullcycle-go-server`
 
 > Ao aplicar este arquivo, não é garantido que os containers executando até o momento sejam atualizados com a mesma imagem
+
+## Deployments
+
+> Similar ao replicaset, mas trata a questão de atualizar a versão das imagens, terminando os containers com a antiga versão e subindo novos containers com a nova versão da imagem
+> `kubectl apply -f k8s/deployment.yaml`
