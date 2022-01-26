@@ -100,3 +100,21 @@ livenessProbe:
     path: /healthz
     port: 8000    
 ```
+
+## Goserver V8 - ReadinessProbe
+
+- `docker build -t yangricardo/hello-go:v8 .`
+- `kind load docker-image yangricardo/hello-go:v8 --name fullcycle-kubernetes`
+- `kubectl apply -f k8s/deployment.yaml`
+
+> checa a cada 5 segundos `periodSeconds` a rota indicada no parametro `httpGet`, Caso ocorra erro 3 vezes `failureThreshold`, reinicia o container. Bloqueia as requisições por `initialDelaySeconds`
+
+```yaml
+readinessProbe:
+  periodSeconds: 3
+  failureThreshold: 1
+  initialDelaySeconds: 10
+  httpGet: 
+    path: /healthz
+    port: 8000     
+```

@@ -23,13 +23,27 @@ spec:
                 path: "family.txt"    
       containers:
         - name: "goserver"
-          image: "yangricardo/hello-go:v7"
+          image: "yangricardo/hello-go:v8"
           imagePullPolicy: Never
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            periodSeconds: 4
+            failureThreshold: 30
+          readinessProbe:
+            periodSeconds: 3
+            failureThreshold: 1
+            # initialDelaySeconds: 10
+            httpGet: 
+              path: /healthz
+              port: 8000    
           livenessProbe:
             periodSeconds: 5
             failureThreshold: 3
             timeoutSeconds: 1
             successThreshold: 1
+            # initialDelaySeconds: 10
             httpGet: 
               path: /healthz
               port: 8000    
