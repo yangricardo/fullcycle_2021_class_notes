@@ -25,6 +25,14 @@ spec:
         - name: "goserver"
           image: "yangricardo/hello-go:v7"
           imagePullPolicy: Never
+          livenessProbe:
+            periodSeconds: 5
+            failureThreshold: 3
+            timeoutSeconds: 1
+            successThreshold: 1
+            httpGet: 
+              path: /healthz
+              port: 8000    
           envFrom:
             - configMapRef:
                 name: goserver-env

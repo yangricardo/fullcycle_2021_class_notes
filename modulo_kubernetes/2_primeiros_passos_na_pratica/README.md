@@ -83,3 +83,20 @@
 - `docker build -t yangricardo/hello-go:v7 .`
 - `kind load docker-image yangricardo/hello-go:v7 --name fullcycle-kubernetes`
 - `kubectl apply -f k8s/deployment.yaml`
+
+### LivenessProbe
+
+- `kubectl apply -f k8s/deployment.yaml && watch -n1 kubectl get pods deployment.apps/goserver configured`: aplica o deplyment e monitora os mods
+
+> checa a cada 5 segundos `periodSeconds` a rota indicada no parametro `httpGet`, Caso ocorra erro 3 vezes `failureThreshold`, reinicia o container
+
+```yaml
+livenessProbe:
+  periodSeconds: 5
+  failureThreshold: 3
+  timeoutSeconds: 1
+  successThreshold: 1
+  httpGet: 
+    path: /healthz
+    port: 8000    
+```
