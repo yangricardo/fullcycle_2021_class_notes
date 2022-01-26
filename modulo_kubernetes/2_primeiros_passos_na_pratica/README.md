@@ -10,7 +10,7 @@
 
 - `kind create cluster --config k8s/kind.cluster.yaml`: cria o cluster local usando kind
 
-- `kind load docker-image yangricardo/hello-go --name fullcycle-go-server`: carrega imagem `yangricardo/hello-go` construida localmente no cluster kind de nome `fullcycle-go-server`
+- `kind load docker-image yangricardo/hello-go --name fullcycle-kubernetes`: carrega imagem `yangricardo/hello-go` construida localmente no cluster kind de nome `fullcycle-kubernetes`
 
 - `kubectl apply -f k8s/pod.yaml`: aplica (cria | atualiza) o pod a partir do arquivo definido
 
@@ -22,7 +22,7 @@
 
 - Cria e carrega imagem no cluster
   - `docker build -t yangricardo/hello-go:v2 .`
-  - `kind load docker-image yangrica`rdo/hello-go:v2 --name fullcycle-go-server`
+  - `kind load docker-image yangrica`rdo/hello-go:v2 --name fullcycle-kubernetes`
 
 > Ao aplicar este arquivo, não é garantido que os containers executando até o momento sejam atualizados com a mesma imagem
 
@@ -48,7 +48,7 @@
 
 - Cria e carrega imagem no cluster e atualiza o deployment
   - `docker build -t yangricardo/hello-go:v4 .`
-  - `kind load docker-image yangricardo/hello-go:v4 --name fullcycle-go-server`
+  - `kind load docker-image yangricardo/hello-go:v4 --name fullcycle-kubernetes`
   - `kubectl apply -f k8s/deployment.yaml`
   - `kubectl port-forward svc/goserver-service 9000:80`
 
@@ -65,14 +65,14 @@
 ## GoServer V5 - Configmap
 
 - `docker build -t yangricardo/hello-go:v5 .`
-- `kind load docker-image yangricardo/hello-go:v5 --name fullcycle-go-server`
+- `kind load docker-image yangricardo/hello-go:v5 --name fullcycle-kubernetes`
 - `kubectl apply -f k8s/configmap.family.yaml`: aplica novo configmap
 - `kubectl apply -f k8s/deployment.yaml`: modificado para montar um volume a partir de um arquivo
 
 ## Goserver V6 - Secret
 
 - `docker build -t yangricardo/hello-go:v6 .`
-- `kind load docker-image yangricardo/hello-go:v6 --name fullcycle-go-server`
+- `kind load docker-image yangricardo/hello-go:v6 --name fullcycle-kubernetes`
 - `echo "Yang" | base64`: transforma a string `Yang` em `base64` gerando o valor `WWFuZwo=`
 - `echo "123456" | base64`: transforma a string `Yang` em `base64` gerando o valor `MTIzNDU2Cg==`
 - `kubectl apply -f k8s/secret.yaml`: aplica o arquivo de secret ao cluster
@@ -81,5 +81,5 @@
 ## Goserver V7 - Healthz
 
 - `docker build -t yangricardo/hello-go:v7 .`
-- `kind load docker-image yangricardo/hello-go:v7 --name fullcycle-go-server`
+- `kind load docker-image yangricardo/hello-go:v7 --name fullcycle-kubernetes`
 - `kubectl apply -f k8s/deployment.yaml`
